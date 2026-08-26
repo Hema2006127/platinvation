@@ -46,7 +46,7 @@ export default function EntryPass({ guestName, guestId, qrDataUrl, expiresAt }: 
     setDownloading('pdf');
     try {
       const { toPng } = await import('html-to-image');
-      const { jsPDF } = await import('jspdf');
+      const { default: jsPDF } = await import('jspdf');
       const dataUrl = await toPng(passRef.current, { quality: 0.97, pixelRatio: 2 });
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'px', format: [340, 520] });
       pdf.addImage(dataUrl, 'PNG', 0, 0, 340, 520);
