@@ -100,7 +100,7 @@ function AdminDashboardContent() {
   const [activeLink, setActiveLink] = useState('#overview');
   const [filter, setFilter] = useState<FilterStatus>('All');
   const [search, setSearch] = useState('');
-  const [musicUrl, setMusicUrl] = useState(INVITATION_CONFIG.musicUrl);
+  const [musicUrl, setMusicUrl] = useState<string>(INVITATION_CONFIG.musicUrl);
 
   const filteredRsvps = recentRsvps.filter(r => {
     const matchFilter = filter === 'All' || r.status === filter;
@@ -214,7 +214,7 @@ function AdminDashboardContent() {
                   <Pie data={statusPie} cx="50%" cy="50%" innerRadius={55} outerRadius={85} paddingAngle={4} dataKey="value">
                     {statusPie.map((entry, i) => <Cell key={i} fill={entry.color} />)}
                   </Pie>
-                  <Tooltip formatter={(v: number, n: string) => [v, n]} contentStyle={{ background: 'rgba(32,30,23,0.97)', border: '1px solid rgba(193,102,59,0.2)', borderRadius: 12 }} />
+                  <Tooltip formatter={(v, n) => [v, n]} contentStyle={{ background: 'rgba(32,30,23,0.97)', border: '1px solid rgba(193,102,59,0.2)', borderRadius: 12 }} />
                   <Legend iconType="circle" wrapperStyle={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)' }} />
                 </PieChart>
               </ResponsiveContainer>
